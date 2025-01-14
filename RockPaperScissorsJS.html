@@ -1,72 +1,91 @@
 <!DOCTYPE html>
-<html>
-
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS RPS</title>
+</head>
 <body>
+    
+<h2> Rock Paper Scissors Game</h2>
 
-<h2> Rock Paper Scissors</h2>
-
+<!-- Create the buttons -->
 <div style = "text-align: center;">
     <button id="rock">Rock</button><button id="paper">Paper</button><button id="scissors">Scissors</button>
 </div>
 
-<!-- code for if user selects rock -->
+
 <script>
-    document.getElementById("rock").addEventListener("click", rockfunction);
-    document.getElementById("paper").addEventListener("click", paperfunction);
-    document.getElementById("scissors").addEventListener("click", scissorfunction);
+<!-- Get the buttons and give them a variable -->
+const rockBtn = document.getElementById("rock"); 
+const paperBtn =document.getElementById("paper"); 
+const scissorBtn = document.getElementById("scissors");
 
-    function rockfunction() {
-      let compchoice = Math.floor(Math.random() * 2);
-    //   set compchoice = 0 to mean that computer has selected paper. If compchoice = 1, computer has selected scissors
-    if (compchoice ===1 ){
-    document.getElementById("yourchoice").innerHTML = 'Your Choice is Rock'; 
-    document.getElementById("compchoice").innerHTML = 'Computers Choice is Paper'; 
-    document.getElementById("Result").innerHTML = 'You loose, Paper Covers Rock';    }
-    else{
-        document.getElementById("compchoice").innerHTML = 'Computers Choice is Scissors'; 
-        document.getElementById("Result").innerHTML = 'You Win! Rock smashes Scissors'; 
 
+
+    // Add event listener to the buttons 
+    rockBtn.addEventListener("click", function() {
+        playgame('rock');
+    });
+    paperBtn.addEventListener("click", function() {
+        playgame('paper');
+    });
+    scissorBtn.addEventListener("click", function() {
+        playgame('scissors');
+    });
+    
+
+    // create a function to play the game 
+    function playgame(userOption){
+        // get computer to make a choice out of 3 using the Math.random function
+        const options = ['rock', 'paper', 'scissors'];
+        let compChoice = options[Math.floor(Math.random() * 3)];
+
+
+        if (compChoice === userOption && compChoice === "paper"){
+            result = 'Its a tie';
+        }
+        else if(compChoice === userOption && compChoice === "rock"){
+            result = 'Its a tie';
+        }
+        else if(compChoice === userOption && compChoice === "scissors"){
+            result = 'Its a tie';
+        }
+        else if(compChoice === "paper" && userOption ==="rock"){
+            result = 'You lose! Paper covers Rock!';
+        }
+        else if(compChoice === "paper" && userOption === "scissors"){
+            result = 'You win! Scissors cuts Paper!';
+        }
+        else if(compChoice === "rock" && userOption === "paper"){
+            result = 'You win! Paper covers Rock!';
+        }
+        else if(compChoice ==="rock" && userOption === "scissors"){
+            result = 'You lose, Rock smashes Scissors!';
+        }
+        else if(compChoice === "scissors" && userOption ==="rock"){
+            result = 'You win! Rock smashes Scissors';
+        }
+        else if(compChoice === "scissors" && userOption ==="paper"){
+            result = 'You lose! Scissors cuts Paper';
+        }
+
+        // Grab elements to display choices and results
+        document.getElementById("yourchoice").innerHTML = `Your Chioce is:  ${userOption}`;
+        document.getElementById("compchoice").innerHTML = `Computers Choice is:  ${compChoice}`;
+        document.getElementById("Result").innerHTML = `Result ${result}`;
     }
-   }
 
-   function paperfunction() {
-      let compchoice = Math.floor(Math.random() * 2);
-    //   set compchoice = 0 to mean that computer has selected rock. If compchoice = 1, computer has selected scissors
-    if (compchoice ===1 ){
-    document.getElementById("yourchoice").innerHTML = 'Your Choice is Paper'; 
-    document.getElementById("compchoice").innerHTML = 'Computers Choice is Rock'; 
-    document.getElementById("Result").innerHTML = 'You win! Paper Covers Rock';    }
-    else{
-        document.getElementById("compchoice").innerHTML = 'Computers Choice is Scissors'; 
-        document.getElementById("Result").innerHTML = 'You Loose, Scissors cut paper'; 
-
-    }
-   }
-
-   function scissorfunction() {
-      let compchoice = Math.floor(Math.random() * 2);
-    //   set compchoice = 0 to mean that computer has selected paper. If compchoice = 1, computer has selected rock
-    if (compchoice ===1 ){
-    document.getElementById("yourchoice").innerHTML = 'Your Choice is Scissors'; 
-    document.getElementById("compchoice").innerHTML = 'Computers Choice is Paper'; 
-    document.getElementById("Result").innerHTML = 'You win! Scissors Cut Paper';    }
-    else{
-        document.getElementById("compchoice").innerHTML = 'Computers Choice is Rock'; 
-        document.getElementById("Result").innerHTML = 'You lose, Rock smashes Scissors'; 
-
-    }
-   }
 
     </script>
-
-
 
 <h3 id="yourchoice"></h3>
 
 <h3 id="compchoice"></h3>
 
 <h3 id="Result"></h3>
+
+
 
 </body>
 </html>
